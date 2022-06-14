@@ -24,14 +24,12 @@ router.post('/loginChoferes', (req, res, next) => {
           //inicio de sesión OK
           const patente = rows[0].patente;
           const password = rows[0].password;
-          const id = rows[0].id;
           // se crea el token
           const token = jwt.sign({ patente, password }, 'secret_this_should_be_longer', {
             expiresIn: '1h'
           });
           res.status(200).json({
             token,
-            id,
             expiresIn: 3600,
             Status: 'Login correcto'
           });
